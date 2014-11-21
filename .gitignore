@@ -1,2 +1,21 @@
 # Files
 *.sw*
+
+# This project untracked files
+dev/17cate9filter/
+dev/TestDataset.t7
+dev/Top10TestData.t7
+dev/imgs/
+
+# Previous project garbage
+dev/README.md
+dev/TopAccuracy.lua
+dev/camFind.lua
+dev/convert-conv-linear-to-spatial.lua
+dev/convertGPUmodelCPU.lua
+dev/demo.lua
+dev/init-loggers.lua
+dev/models.lua
+dev/run-gpu.lua
+dev/train-and-test-gpu.lua
+dev/usefulFunctions.lua
