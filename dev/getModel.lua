@@ -29,10 +29,6 @@ model:add(MLP)
 -- Removing custom updateGradInput()
 model.modules[1].modules[1].updateGradInput = nil
 
--- Removing old one
-oldModel = nil
-oldMLP = nil
-
 -- Creating SoftMax SM module
 SM = nn.SoftMax():cuda()
 LSM = nn.LogSoftMax():cuda()
@@ -43,3 +39,8 @@ loss = nn.ClassNLLCriterion():cuda()
 top10 = torch.load('Top10TestData.t7')
 classes = torch.load('classes.t7')
 revClas = {}; for a,b in ipairs(classes) do revClas[b] = a end
+
+-- Cleaning
+oldModel = nil
+oldMLP = nil
+collectgarbage()
