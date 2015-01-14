@@ -12,6 +12,7 @@ require 'pl'
 -- Options ---------------------------------------------------------------------
 opt = lapp([[
 --camRes  (default ok) Camera resolution (nHD|VGA|FWVGA|ok|HD|FHD)
+--eth                  Ethernet camera
 --mode    (default 1)  Different mode
 ]])
 
@@ -25,10 +26,21 @@ res = {
    FHD   = {w = 1920, h = 1080},
 }
 
-cam = image.Camera.new{
-   width  = res[opt.camRes].w,
-   height = res[opt.camRes].h
-}
+if opt.eth then
+   video = require 'libvideo_decoder'
+   status, height, width, length = video.init('http://169.254.80.245:8081', 'mjpeg')
+   dst = torch.ByteTensor(3, height, width)
+   cam = {}
+   function cam:forward()
+      video.frame_rgb(dst)
+      return dst:float():mul(1/255)
+   end
+else
+   cam = image.Camera.new{
+      width  = res[opt.camRes].w,
+      height = res[opt.camRes].h
+   }
+end
 
 -- Auxiliary functions ---------------------------------------------------------
 image.fit = function (inputImage)
@@ -55,6 +67,42 @@ gradManipulation = function (grad, th)
    return grad:float():abs():max(1):repeatTensor(3,1,1)
 end
 
+layout = opt.eth and 1 or 2
+
+function printLabels()
+   if opt.eth then
+      win.painter:gbegin()
+      winSize = win.window.frameSize:totable()
+      win.painter:setcolor(1,1,1)
+      win.painter:setfontsize(30)
+      win.painter:moveto(20,40+winSize.height/2)
+      win.painter:show('saliency')
+      win.painter:moveto(20,40+winSize.height/4*3)
+      win.painter:show('saliency fine grain')
+      win.painter:moveto(20,40+winSize.height/4)
+      win.painter:show('heat-map')
+      win.painter:setcolor(0,0,0)
+      win.painter:moveto(20,40)
+      win.painter:show('Camera input')
+      win.painter:gend()
+   else
+      win.painter:gbegin()
+      winSize = win.window.frameSize:totable()
+      win.painter:setcolor(1,1,1)
+      win.painter:setfontsize(30)
+      win.painter:moveto(20,40+winSize.height/2)
+      win.painter:show('saliency')
+      win.painter:moveto(20+winSize.width/2,40+winSize.height/2)
+      win.painter:show('saliency fine grain')
+      win.painter:moveto(20+winSize.width/2,40)
+      win.painter:show('heat-map')
+      win.painter:setcolor(0,0,0)
+      win.painter:moveto(20,40)
+      win.painter:show('Camera input')
+      win.painter:gend()
+   end
+end
+
 run = function ()
 
    img = cam:forward():cuda()
@@ -77,7 +125,7 @@ run = function ()
    gradInput = model:updateGradInput(img:cuda(), def)
    -- image.display{image = gradInput:float(), zoom = 0.5}
    win = image.display{
-      zoom = 1, nrow = 2, scaleeach = true, win = win, min = 0, max = 1,
+      zoom = 1, nrow = layout, scaleeach = true, win = win, min = 0, max = 1,
       legend = '"person" pseudo probability and top-down saliency map',
       image = {
          img:float(),
@@ -88,20 +136,7 @@ run = function ()
       }
    }
 
-   win.painter:gbegin()
-   winSize = win.window.frameSize:totable()
-   win.painter:setcolor(1,1,1)
-   win.painter:setfontsize(30)
-   win.painter:moveto(20,40+winSize.height/2)
-   win.painter:show('saliency')
-   win.painter:moveto(20+winSize.width/2,40+winSize.height/2)
-   win.painter:show('saliency fine grain')
-   win.painter:moveto(20+winSize.width/2,40)
-   win.painter:show('heat-map')
-   win.painter:setcolor(0,0,0)
-   win.painter:moveto(20,40)
-   win.painter:show('Camera input')
-   win.painter:gend()
+   printLabels()
 
    return win.window.visible
 
