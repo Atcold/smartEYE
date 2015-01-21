@@ -38,7 +38,7 @@ top10 = torch.load('Top10TestData.t7')
 classes = torch.load('classes.t7')
 revClas = {}; for a,b in ipairs(classes) do revClas[b] = a end
 
-crit = nn.ClassNLLCriterion()
+crit = nn.ClassNLLCriterion():cuda()
 
 for label, class in pairs(top10) do
    print('Prediction for ' .. label)
