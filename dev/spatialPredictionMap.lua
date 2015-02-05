@@ -9,7 +9,7 @@ require 'gnuplot'
 require 'imgraph'
 require 'getSpatialModel'
 
-img = image.load('imgs/peep01.jpg')
+img = image.load('../imgs/peep01.jpg')
 model:forward(img:cuda())
 --gnuplot.hist(model.output[revClas.jacket])
 psProb = torch.CudaTensor(#model.output)

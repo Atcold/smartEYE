@@ -4,7 +4,7 @@
 -- Alfredo Canziani, Nov 14
 --------------------------------------------------------------------------------
 
-data = torch.load('TestDataset.t7')
+data = torch.load('../data/17cate9filter/TestDataset.t7')
 cls = data.classes
 data.classes = nil
 top10data = {}
@@ -23,4 +23,4 @@ for _, c in pairs(cls) do
    end
 end
 
-torch.save('Top10TestData.t7', top10data)
+torch.save('../data/17cate9filter/Top10TestData.t7', top10data)
