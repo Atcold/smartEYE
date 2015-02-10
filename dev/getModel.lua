@@ -5,6 +5,11 @@
 --------------------------------------------------------------------------------
 
 require 'cunn'
+local GPUcount = cutorch.getDeviceCount()
+if GPUcount > 1 then
+   io.write('Choose free GPU (1-' .. GPUcount .. ') ')
+   cutorch.setDevice(io.read())
+end
 
 oldModel = torch.load('../net/17cate9filter/model-127.net')
 
