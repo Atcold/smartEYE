@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- Spatialise a MLP
 --------------------------------------------------------------------------------
--- Alfredo Canziani, Nov 14
+-- Alfredo Canziani, Nov 14, Feb 15
 --------------------------------------------------------------------------------
 
 -- Getting model and renaming
@@ -37,6 +37,15 @@ model:add(nn.AddConstant(-0.4124)):cuda()
 model:add(nn.MulConstant(1/0.2805)):cuda()
 model:add(oldModel.modules[1])
 model:add(newMLP)
+
+-- Creating a SpatialSoftMax function
+nn.SpatialSoftMax = function (spatialLogit)
+   return SM(
+      spatialLogit
+         :reshape(spatialLogit:size(1), spatialLogit:size(2) * spatialLogit:size(3))
+         :t()
+      ):t():reshape(spatialLogit:size())
+end
 
 -- Cleaning
 oldModel = nil
