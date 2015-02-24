@@ -1,11 +1,11 @@
 # Files
 *.sw*
+*.png
 
 # This project untracked files
-dev/17cate9filter/
-dev/TestDataset.t7
-dev/Top10TestData.t7
-dev/imgs/
+/net
+/data
+/imgs
 
 # Previous project garbage
 dev/README.md
