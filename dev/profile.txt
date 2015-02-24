@@ -1,0 +1,56 @@
+On GPU3, 13 Feb 15
+--------------------------------------------------------------------------------
+Eye-size (224x224)
+
+Forward time          / sample [ms]:    1.7327628416174
+Forward and grad time / sample [ms]:    3.6317140915815
+Just grad time        / sample [ms]:    1.8989512499641
+--------------------------------------------------------------------------------
+Eye-size, no SoftMax(), no loss()
+
+Forward time          / sample [ms]:    1.5146970748901
+Forward and grad time / sample [ms]:    3.175585269928
+Just grad time        / sample [ms]:    1.6608881950378
+--------------------------------------------------------------------------------
+Eye-size, no SoftMax(), spatial, no stat
+
+Forward time          / sample [ms]:    2.0737600326538
+Forward and grad time / sample [ms]:    4.0523791313171
+Just grad time        / sample [ms]:    1.9786190986633
+--------------------------------------------------------------------------------
+Profiling Eye-size, no SoftMax(), spatial
+
+Forward time          / sample [ms]:    2.1075391769409
+Forward and grad time / sample [ms]:    4.1152501106262
+Just grad time        / sample [ms]:    2.0077109336853
+--------------------------------------------------------------------------------
+Profiling 1067x1600, no SoftMax(), spatial
+
+Forward time          / sample [ms]:    36.289842128754
+Forward and grad time / sample [ms]:    78.196549415588
+Just grad time        / sample [ms]:    41.906707286835
+--------------------------------------------------------------------------------
+Profiling Eye-size, spatial, bottom-up
+
+Forward time          / sample [ms]:    2.1483781337738
+Forward and grad time / sample [ms]:    4.1458990573883
+Just grad time        / sample [ms]:    1.9975209236145
+--------------------------------------------------------------------------------
+Profiling 1067x1600, spatial, bottom-up
+
+Forward time          / sample [ms]:    96.076610088348
+Forward and grad time / sample [ms]:    138.7956905365
+Just grad time        / sample [ms]:    42.719080448151
+--------------------------------------------------------------------------------
+Profiling Eye-size, spatial, top-down
+
+Forward time          / sample [ms]:    2.1514868736267
+Forward and grad time / sample [ms]:    4.1713001728058
+Just grad time        / sample [ms]:    2.0198132991791
+--------------------------------------------------------------------------------
+Profiling 1067x1600, spatial, top-down
+
+Forward time          / sample [ms]:    95.385000705719
+Forward and grad time / sample [ms]:    138.04469823837
+Just grad time        / sample [ms]:    42.659697532654
+--------------------------------------------------------------------------------
