@@ -109,14 +109,7 @@ run = function ()
    model:forward(img:cuda())
 
    -- Estimating pseudo-probability
-   psProb = torch.CudaTensor(#model.output)
-
-   -- This has to be rewritten with FFI
-   for i = 1, model.output:size(2) do
-      for j = 1, model.output:size(3) do
-         psProb[{ {},i,j }] = SM:forward(model.output[{ {},i,j }])
-      end
-   end
+   psProb = nn.SpatialSoftMax(model.output)
 
    colorMap = imgraph.colorize(psProb[2]:float()*255,image.jetColormap(256):float())
 
