@@ -1,7 +1,15 @@
-# smartEYE saliency project
+# smartEYE
 
-This collection of scripts computes both *bottom-up* and *top-down* saliency map.
-A theoretical explanation can be found in the VADNN corresponding article.
+This is an implemetation of the [VADNN](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=7086900) article.
+This collection of scripts can compute both *bottom-up* and *top-down* visual attention saliency maps.
+
+## You need to fetch some data
+
+You need to fetch the trained model, at least, to be able to run the live demo.
+
+```bash
+./getData-public.sh
+```
 
 ## How to run a live person top-down saliency demo
 
@@ -11,6 +19,7 @@ The source can be a USB webcam, which is the default option, or an Ethernet came
 For example, we can run on USB, mode 3 by typing
 
 ```bash
+cd dev
 qlua saliencyCam.lua --mode 3
 ```
 
