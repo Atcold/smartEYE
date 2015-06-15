@@ -3,6 +3,7 @@
 This is an implemetation of the [VADNN](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=7086900) article.
 This collection of scripts can compute both *bottom-up* and *top-down* visual attention saliency maps.
 
+
 ## You need to fetch some data
 
 You need to fetch the trained model, at least, to be able to run the live demo.
@@ -10,6 +11,16 @@ You need to fetch the trained model, at least, to be able to run the live demo.
 ```bash
 ./getData-public.sh
 ```
+
+
+## Dependency
+
+If you want to use an USB camera, you will need to install the `camera` package
+
+```bash
+luarocks install camera
+```
+
 
 ## How to run a live person top-down saliency demo
 
