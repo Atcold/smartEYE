@@ -1,7 +1,7 @@
 # smartEYE
 
 This is an implemetation of the [VADNN](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=7086900) article.
-This collection of scripts can compute both *bottom-up* and *top-down* visual attention saliency maps.
+This collection of scripts for [Torch7](http://torch.ch/) can compute both *bottom-up* and *top-down* visual attention saliency maps.
 
 
 ## You need to fetch some data
