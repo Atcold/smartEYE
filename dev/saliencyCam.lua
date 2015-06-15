@@ -5,7 +5,6 @@
 --------------------------------------------------------------------------------
 
 require 'camera'
-require 'imgraph'
 require 'getSpatialModel'
 require 'pl'
 
@@ -111,7 +110,7 @@ run = function ()
    -- Estimating pseudo-probability
    psProb = nn.SpatialSoftMax(model.output)
 
-   colorMap = imgraph.colorize(psProb[2]:float()*255,image.jetColormap(256):float())
+   colorMap = image.y2jet(psProb[2]:float()*255 + 1)
 
    def = psProb:clone():zero()
    def[2] = psProb[2]:clone():mul(-1)
