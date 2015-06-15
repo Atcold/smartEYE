@@ -4,7 +4,6 @@
 -- Alfredo Canziani, Jan 15
 --------------------------------------------------------------------------------
 
-require 'camera'
 require 'getSpatialModel'
 require 'pl'
 
@@ -35,6 +34,7 @@ if opt.eth then
       return dst:float():mul(1/255)
    end
 else
+   require 'camera'
    cam = image.Camera.new{
       width  = res[opt.camRes].w,
       height = res[opt.camRes].h
