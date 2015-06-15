@@ -6,6 +6,7 @@
 
 require 'image'
 require 'getModel'
+require 'ext'
 
 -- Function definition ---------------------------------------------------------
 clip = function (input)

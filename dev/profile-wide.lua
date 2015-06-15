@@ -6,6 +6,7 @@
 
 require 'image'
 require 'getSpatialModel'
+require 'ext'
 
 -- Profiling -------------------------------------------------------------------
 

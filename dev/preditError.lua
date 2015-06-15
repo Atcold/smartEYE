@@ -5,6 +5,7 @@
 --------------------------------------------------------------------------------
 
 require 'cunn'
+require 'ext'
 
 oldModel = torch.load('../net/17cate9filter/model-127.net')
 
@@ -32,11 +33,6 @@ oldMLP.modules[2].train = false
 oldMLP.modules[5].train = false
 oldMLP.modules[8].train = false
 LSM = nn.LogSoftMax():float() -- explains the discrepancy in the predictions values
-
--- Loading images and classes, building reverse classes
-top10 = torch.load('../data/17cate9filter/Top10TestData.t7')
-classes = torch.load('../net/17cate9filter/classes.t7')
-revClas = {}; for a,b in ipairs(classes) do revClas[b] = a end
 
 crit = nn.ClassNLLCriterion():cuda()
 

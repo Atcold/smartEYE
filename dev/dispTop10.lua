@@ -5,9 +5,9 @@
 --------------------------------------------------------------------------------
 
 require 'image'
-data = torch.load('../data/17cate9filter/Top10TestData.t7')
+require 'ext'
 
-for label, cls in pairs(data) do
+for label, cls in pairs(top10) do
    -- Display
    image.display{image = cls.image, legend = label, nrow = 5}
 

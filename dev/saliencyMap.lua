@@ -6,6 +6,7 @@
 
 require 'image'
 require 'getModel'
+require 'ext'
 --require 'getSpatialModel' -- remove preprocessing for fairness
 
 io.write('[V]iew or [P]rofile? (V/P) ')
