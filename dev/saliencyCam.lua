@@ -12,7 +12,7 @@ require 'pl'
 opt = lapp([[
 --camRes  (default ok) Camera resolution (nHD|VGA|FWVGA|ok|HD|FHD)
 --eth                  Ethernet camera
---mode    (default 1)  Different mode
+--mode    (default 2)  Different mode
 ]])
 
 -- Switch input sources
